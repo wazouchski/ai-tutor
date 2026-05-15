@@ -1,5 +1,7 @@
 # Jarvis AI Tutor
 
+> **Status — work in progress.** End-to-end loop works (login, goal capture, assessment, curriculum generation, lesson, quiz, persistent memory). Active work in progress: better quiz feedback, multi-modal lesson content, parent-facing dashboard, and fine-tuned smaller local models for faster inference. Treat as an evolving personal project.
+
 A self-hosted, multi-user AI tutoring platform that runs entirely on local hardware. A FastAPI backend orchestrates a local Qwen2.5:7b-instruct model (served by Ollama) to assess each learner's prior knowledge, generate a personalized curriculum, deliver interactive lessons, and quiz them at module boundaries. A persistent, Claude Code-style memory system keeps per-user profiles, feedback, session logs, and references on disk so the tutor remembers each learner across sessions. The React frontend is bundled and served by the backend, and the server binds to the LAN so any device in the household can use it.
 
 ## Why
@@ -72,9 +74,19 @@ Persistence is filesystem-based, not a database. The `MemorySystem` class in `ba
 
 ## Screenshots
 
-![Login screen - Jarvis personal AI tutor entry point](docs/screenshots/01-home.png)
+Captured against a fresh `demo` user end-to-end, with the FastAPI backend and a local Ollama (`qwen2.5:7b-instruct`) serving inference.
 
-> Additional screenshots (assessment, lesson, progress dashboard) require the FastAPI backend + Ollama running and will be added with the next capture pass.
+![Login - Jarvis personal AI tutor entry point](docs/screenshots/01-home.png)
+
+![Goal selection - the user names what they want to learn; the system uses both inputs to scope the assessment and downstream curriculum](docs/screenshots/02-goal-select.png)
+
+![Assessment result - LLM-graded MCQ-based pre-test surfaces the user's strong areas vs focus areas to drive the next stage](docs/screenshots/03-assessment-results.png)
+
+![Personalized curriculum - generated from the goal + assessment, broken into modules with subtopics and assessments at each module boundary](docs/screenshots/04-curriculum.png)
+
+![Lesson view - Jarvis teaches a module interactively, with content streamed from the local model and grounded in the curriculum spec](docs/screenshots/05-lesson.png)
+
+![Module quiz - free-text + multiple-choice quiz at module boundaries; wrong answers add to the per-user `needs_reteach` queue persisted in `progress.json`](docs/screenshots/06-quiz.png)
 
 ## License
 
