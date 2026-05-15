@@ -72,11 +72,9 @@ Persistence is filesystem-based, not a database. The `MemorySystem` class in `ba
 
 ## Screenshots
 
-![Home](docs/screenshots/01-home.png)
+![Login screen - Jarvis personal AI tutor entry point](docs/screenshots/01-home.png)
 
-![Assessment](docs/screenshots/02-assessment.png)
-
-![Lesson](docs/screenshots/03-lesson.png)
+> Additional screenshots (assessment, lesson, progress dashboard) require the FastAPI backend + Ollama running and will be added with the next capture pass.
 
 ## License
 
